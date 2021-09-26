@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
 
@@ -6,84 +7,132 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     final urlImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLMl3Qmub_uzuDDylzpAmQ9dn1kzwQ__fY1A&usqp=CAU";
     return Scaffold(
-      body: Material(
-        color: Colors.white,
-        child:ListView(
-          padding: EdgeInsets.only(left: 10),
-          children: <Widget>[
-            const SizedBox(
-              height: 10,
-            ),
-            buildHeader(
-                urlImage:urlImage,
-                onClicked:(){}
-            ),
-            const SizedBox(
-              height:5,
-            ),
-            Divider(color: Colors.black,),
+        body: Material(
+          color: Color(0XFFF5F6F9),
+          child:ListView(
+            //padding: EdgeInsets.only(left: 10),
+            children: <Widget>[
+              Card(
+                child: Container(
+                  child:  buildHeader(urlImage:urlImage, onClicked:(){}),
+                ),
 
-            const SizedBox(
-              height: 10,
-            ),
-            buildMenuItem(
-              text:"My account",
-              icon:Icons.account_circle,
-              onClicked:()=>selectedItem(context,0)
-            ),
+              ),
+              Card(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                   Padding(
+                     padding:EdgeInsets.symmetric(vertical: 15,horizontal: 15),
+                     child: Row(
+                       children: <Widget>[
+                         Text("Giới thiệu",style: TextStyle(fontWeight:FontWeight.w500,fontSize: 18),),
 
-            buildMenuItem(
-                text:"Notifications",
-                icon:Icons.notifications,
-                onClicked:()=>selectedItem(context,1)
-            ),
+                       ],
+                     ),
+                   ),
+                    buildIntroduce(icon:Icons.cake_outlined,text: "Sinh nhật",text1: "27/04/2001"),
+                    buildIntroduce(icon:Icons.people_outline,text: "Giới tính",text1: "Nam"),
+                    buildIntroduce(icon:Icons.access_time_sharp,text: "Đang hoạt động"),
+                    
+                  ],
+                ),
+              ),
+              Card(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding:EdgeInsets.symmetric(vertical: 15,horizontal: 15),
+                      child: Row(
+                        children: <Widget>[
+                          Text("Thông tin liên hệ",style: TextStyle(fontWeight:FontWeight.w500,fontSize: 18)),
 
-            buildMenuItem(
-                text:"Settings",
-                icon:Icons.settings,
-                onClicked:()=>selectedItem(context,2)
-            ),
+                        ],
+                      ),
+                    ),
+                    buildIntroduce(icon:Icons.not_listed_location_outlined,text: "Địa chỉ:",text1: "Phú Hòa,Thủ Dầu Một,BD"),
+                    buildIntroduce(icon:Icons.email_outlined,text: "Email:",text1:"ngohieu@gmail.com"),
+                  ],
+                ),
+              ),
 
-            buildMenuItem(
-                text:"Help Center",
-                icon:Icons.help_center,
-                onClicked:()=>selectedItem(context,3)
-            ),
+              Card(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding:EdgeInsets.symmetric(vertical: 15,horizontal: 15),
+                      child: Row(
+                        children: <Widget>[
+                          Text("Quyền riêng tư & hỗ trợ",style: TextStyle(fontWeight:FontWeight.w500,fontSize: 18),),
+                          Expanded(child: SizedBox()),
+                        ],
+                      ),
+                    ),
+                    InkWell(
+                      onTap: (){},
+                        child: buildIntroduce(icon:Icons.notifications_active_outlined,text: "Tắt thông báo",)),
+                    buildIntroduce(icon:Icons.support_outlined,text: "Hỗ trợ:",text1: "19001187"),
+                    buildIntroduce(icon:Icons.warning_amber_rounded,text: "Có gì đó không ổn ?"),
 
-            buildMenuItem(
-                text:"Log out",
-                icon:Icons.logout,
-                onClicked:()=>selectedItem(context,4)
-            )
-          ],
-        ),
+                  ],
+                ),
+              ),
 
-    )
+            ],
+          ),
+
+        )
     );
   }
+
+
+  Widget buildIntroduce({required IconData icon,required String text,String? text1}){
+    return Column(
+      children: <Widget>[
+         Padding(
+        padding: EdgeInsets.symmetric(vertical: 7,horizontal: 10),
+        child: Container(
+          color: Colors.white60,
+          child: Row(
+            children: <Widget>[
+              Icon(icon,size: 25,),
+              SizedBox(width: 5,),
+              Text(text,style: TextStyle(fontSize: 15),),
+              SizedBox(width: 5,),
+              text1!=null? Text(text1.toString(),style: TextStyle(fontSize: 17,fontWeight: FontWeight.w500),):Container()
+            ],
+          ),
+        ),
+      ),
+    ],
+    );
+  }
+  
 
   Widget buildHeader({required String urlImage,
     required VoidCallback onClicked}){
     return Column(
       children:<Widget> [
         SizedBox(
-          height: 115,
-          width: 115,
+          height: 90,
+          width: 90,
           child: Stack(
             fit: StackFit.expand,
             overflow: Overflow.visible,
             children: <Widget>[
               CircleAvatar(backgroundImage:NetworkImage(urlImage),),
               Positioned(
-                  right: -10,
+                  right: -5,
                   bottom: 0,
                   child: SizedBox(
-                    height: 46,
-                    width: 46,
+                    height: 28,
+                    width: 28,
                     child: FlatButton(
                       padding: EdgeInsets.zero,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50)
+                          borderRadius: BorderRadius.circular(50)
                       ),
                       color: Color(0xFFF5F6F9),
                       onPressed: onClicked,
@@ -98,69 +147,5 @@ class Profile extends StatelessWidget {
 
       ],
     );
-  }
-
-
-
-
-  Widget buildMenuItem({required String text,required IconData icon,VoidCallback? onClicked}){
-    final color=Colors.black;
-
-
-    return Column(
-      children: <Widget>[
-        SizedBox(height:10),
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
-          child: FlatButton(
-            padding: EdgeInsets.all(10),
-            shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-            color: Color(0XFFF5F6F9),
-            onPressed: onClicked,
-            child: Row(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(left: 10),
-                  child:Icon(icon,color:color,size: 30,),
-                ),
-                SizedBox(
-                  width:20,
-                ),
-                Expanded(
-                  child: Text(text,style: TextStyle(color:color,fontSize: 20,),),
-                ),
-
-                Icon(Icons.arrow_forward_ios,color: color)
-
-              ],
-            ),
-          ),
-
-        )
-
-      ],
-    );
-  }
-
-  void selectedItem(BuildContext context, int index){
-    switch(index){
-      case 0:
-        // navigator.of(context).push   go to page?
-        break;
-      case 1:
-      // navigator.of(context).push   go to page?
-        break;
-      case 2:
-      // navigator.of(context).push   go to page?
-        break;
-      case 3:
-      // navigator.of(context).push   go to page?
-        break;
-      case 4:
-      // navigator.of(context).push   go to page?
-        break;
-
-    }
   }
 }
