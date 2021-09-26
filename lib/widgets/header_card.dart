@@ -5,13 +5,13 @@ import 'package:vnttsnewsapp/models/news_model.dart';
 class HeaderCard extends StatelessWidget {
   final NewsModel newsmodel;
   HeaderCard({required this.newsmodel});
-  
+
   @override
   Widget build(BuildContext context) {
     return Container(
       //View ảnh ở header
       width: 330.0,
-      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.0),
           border: Border.all(color: grey3, width: 1.0)),
@@ -22,7 +22,7 @@ class HeaderCard extends StatelessWidget {
           Row(
             children: [
               const CircleAvatar(
-                radius: 4.0,
+                radius: 5.0,
                 backgroundColor: grey1,
               ),
               const SizedBox(width: 10.0),
@@ -31,27 +31,26 @@ class HeaderCard extends StatelessWidget {
           ),
           //Cái ảnh to vcl
           const SizedBox(height: 5.0),
-          Expanded(
-            child: Hero(
-              tag: newsmodel.type,
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10.0),
-                  image: DecorationImage(
-                    image: NetworkImage(newsmodel.imgUrl),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+          Container(
+            height: 190.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              image: DecorationImage(
+                image: NetworkImage(newsmodel.imgUrl),
+                fit: BoxFit.cover,
               ),
             ),
           ),
+
           //Title và một số thứ bỏ vô cho đỡ trống, đẹp :>
           const SizedBox(height: 5.0),
-          Text(
-            newsmodel.title,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 2,
-            style: cardTitle,
+          Expanded(
+            child: Text(
+              newsmodel.title,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              style: cardTitle,
+            ),
           ),
           const SizedBox(height: 5.0),
           Row(

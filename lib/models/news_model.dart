@@ -33,8 +33,8 @@ List<NewsModel> newsList = [
   ),
   NewsModel(
     type: "Tổng hợp",
-    title: "Hạn chế của Lionel Messi",
-    subtitle: "Hạn chế của Lionel Messi",
+    title: "Hạn chế của Lionel",
+    subtitle: "Hạn chế của Lionel Messi Hạn chế của Lionel Messi để thi hành án",
     newsContent: "Hạn chế của Lionel Messi để thi hành án",
     postDate: "29/9/2021",
     isActive: "52423",

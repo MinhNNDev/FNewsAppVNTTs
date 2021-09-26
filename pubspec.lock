@@ -110,7 +110,7 @@ packages:
     source: hosted
     version: "2.1.0"
   http:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http
       url: "https://pub.dartlang.org"
@@ -127,13 +127,6 @@ packages:
     dependency: transitive
     description:
       name: lints
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
-  lipsum:
-    dependency: "direct main"
-    description:
-      name: lipsum
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"

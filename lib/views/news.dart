@@ -14,10 +14,30 @@ class News extends StatefulWidget {
 }
 
 class _NewsState extends State<News> {
+  int countPoint = 0;
+  late ScrollController controller;
+  List<String> items = new List.generate(100, (index) => 'Hello $index');
+  int _counter = 0;
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+  @override
+  void initState() {
+    super.initState();
+    countPoint = 1;
+    controller = new ScrollController()..addListener(_scrollListener);
+  }
+  @override
+  void dispose() {
+    controller.removeListener(_scrollListener);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Expanded(
       child: ListView(
         children: [
           //View Header ảnh to vc chạy ngang
@@ -26,7 +46,7 @@ class _NewsState extends State<News> {
             height: 300,
             padding: const EdgeInsets.only(left: 12),
             child: ListView.builder(
-              itemCount: newsList.length, //Số phần tử Render ra là số phần tử trong array newsList
+              itemCount: newsList.length,
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
               itemBuilder: (context, index) {
@@ -36,7 +56,8 @@ class _NewsState extends State<News> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Details(newsmodel: news), //vào detail kèm thông tin
+                        builder: (context) =>
+                            Details(newsmodel: news), //vào detail kèm thông tin
                       ),
                     );
                   },
@@ -69,13 +90,13 @@ class _NewsState extends State<News> {
               var recent = newsList[index];
               return InkWell(
                 onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Details(newsmodel: recent),
-                      ),
-                    );
-                  },
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Details(newsmodel: recent),
+                    ),
+                  );
+                },
                 child: Container(
                   width: double.infinity,
                   height: 120.0,
@@ -89,5 +110,14 @@ class _NewsState extends State<News> {
         ],
       ),
     );
+  }
+
+  void _scrollListener() {
+    print(controller.position.extentAfter);
+    if (controller.position.extentAfter < 500) {
+      setState(() {
+        countPoint ++;
+      });
+    }
   }
 }

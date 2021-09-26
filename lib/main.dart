@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:vnttsnewsapp/models/news_model.dart';
 import 'views/tabs.dart';
-import 'views/home_page.dart';
 
 void main() {
   runApp(const MyApp());

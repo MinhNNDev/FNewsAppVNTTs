@@ -21,22 +21,7 @@ class _TabsState extends State<Tabs> {
           preferredSize: const Size.fromHeight(80.0),
           child: Column(
             children: [
-              // const SizedBox(height: 25.0),
-              //View logo cty
-              ListTile(
-                trailing: Container(
-                  width: 100.0,
-                  margin: const EdgeInsets.only(top: 20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    image: const DecorationImage(
-                      image: AssetImage("assets/logo.png"),
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-              ),
-              //View phần tabbar
+              const SizedBox(height: 50.0),
               Align(
                 alignment: Alignment.topLeft,
                 child: TabBar(
