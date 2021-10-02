@@ -3,6 +3,7 @@ import 'package:vnttsnewsapp/constants.dart';
 import 'package:vnttsnewsapp/views/news.dart';
 import 'package:vnttsnewsapp/views/sales.dart';
 import 'package:vnttsnewsapp/views/profile.dart';
+import 'package:vnttsnewsapp/views/upload.dart';
 
 class Tabs extends StatefulWidget {
   const Tabs({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class _TabsState extends State<Tabs> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       //Khởi tạo tab controller, có thể tùy biến thay đổi
-      length: 4,
+      length: 5,
       child: Scaffold(
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(80.0),
@@ -37,7 +38,8 @@ class _TabsState extends State<Tabs> {
                     Tab(text: "Tin tức"),
                     Tab(text: "Khuyến mại"),
                     Tab(text: "Tổng hợp"),
-                    Tab(text:"Profile"),
+                    Tab(text: "Profile"),
+                    Tab(text: "Upload"),
                   ],
                 ),
               ),
@@ -45,7 +47,7 @@ class _TabsState extends State<Tabs> {
           ),
         ),
         body: const TabBarView(
-          children: [News(), Sales(), Sales(),Profile()], //các tab hoạt động tương ứng với controller
+          children: [News(), Sales(), Sales(),Profile(), Upload()], //các tab hoạt động tương ứng với controller
         ),
       ),
     );

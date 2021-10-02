@@ -23,7 +23,7 @@ class HeaderCard extends StatelessWidget {
             children: [
               const CircleAvatar(
                 radius: 5.0,
-                backgroundColor: grey1,
+                backgroundColor: blueE,
               ),
               const SizedBox(width: 10.0),
               Text(newsmodel.type, style: categoryTitle)
@@ -65,6 +65,10 @@ class HeaderCard extends StatelessWidget {
                 backgroundColor: grey1,
               ),
               const SizedBox(width: 10.0),
+              Text(
+                newsmodel.isActive,
+                style: detailContent,
+              ),
             ],
           )
         ],
